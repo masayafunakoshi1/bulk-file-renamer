@@ -6,16 +6,14 @@ def main():
     print("It changes the name and indexes it starting from 0")
     print("e.g. Rename IMG3124.jpg --> Picture --> picture_0.jpg")
     print("-----------------------------------------")
-
     # for paths, make sure to use mnt/d
-    path = input("Input path to folder: ")
-    if(validPathCheck(path) != True): 
-        return
+    path = validPathCheck()
 
     print("-----------------------------------------")
-    print("Input edited name (NO SPACES or SPECIAL CHARACTERS besides - or _): ")
     newName = validFileName()
 
+    print("-----------------------------------------")
+    
     i = 0
     # for filename in os.listdir(path):
     #     # if same name but capitalized, it will delete some items, be aware
@@ -26,25 +24,28 @@ def main():
     #     i += 1
 
 #checks if file path is valid
-def validPathCheck(path):
-    if os.path.exists(path) != True:
-        print("Path set failed. Path not found.")
-        return False
-    else:
-        print("Path set successfully.")
-        return True
+def validPathCheck():
+    path = input("Input path to folder: ")
+    while(True):
+        if os.path.exists(path) != True:
+            print("Path set failed. Path not found.")
+            path = input("Try different path: ")
+        else:
+            print("Path set successfully!")
+            return path
 
 #Checks if inputted filename is valid and sets it
 def validFileName():
-    attemptedName = input()
+    attemptedName = input("Input edited name (NO SPACES or SPECIAL CHARACTERS besides - or _): ")
     regex = re.compile("[@!#$%^&*()<>?/\|}{~;:,.`\'\"\[\]\s]") 
     while(True):
-        if(regex.search(attemptedName) == None):
-            print("File name set successfully!")
-            return attemptedName
+        if(regex.search(attemptedName) != None):
+            print("Invalid filename.")
+            attemptedName = input("Try different filename: ")
         else:
-            print("Invalid file Name. Reinput new valid file name:")
-            attemptedName = input()
+            print("Filename set successfully!")
+            return attemptedName
+
 
 
 if __name__ == '__main__':
