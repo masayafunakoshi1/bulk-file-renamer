@@ -2,11 +2,13 @@ import os
 import re
 
 def main():
+    i = 0
     print("Welcome to the bulk-file-renamer! Using this script lets you rename all the files in a folder of your choosing!")
     print("It changes the name and indexes it starting from 0")
     print("e.g. Rename IMG3124.jpg --> Picture --> picture_0.jpg")
     print("-----------------------------------------")
     # for paths, make sure to use mnt/d
+        # TEST PATH /mnt/d/Coding/Python/Learning/renamedFolder/
     path = validPathCheck()
 
     print("-----------------------------------------")
@@ -15,14 +17,17 @@ def main():
     print("-----------------------------------------")
     fileType = chooseFileType()
 
-    i = 0
-    # for filename in os.listdir(path):
-    #     # if same name but capitalized, it will delete some items, be aware
-    #     newName = f'{newName}_' + str(i) + fileType
-    #     my_source =path + filename
-    #     newName =path +  newName
-    #     os.rename(my_source,  newName)
-    #     i += 1
+    print("-----------------------------------------")
+    
+    for filename in os.listdir(path):
+        # if same name but capitalized, it will delete some items, be aware
+        newCompleteName = newName + str(i) + fileType
+        source =path + filename
+        newCompleteName =path +  newCompleteName
+        os.rename(source,  newCompleteName)
+        i += 1
+        newCompleteName = ''
+    print("All files changed successfully!!!")
 
 #checks if file path is valid
 def validPathCheck():
