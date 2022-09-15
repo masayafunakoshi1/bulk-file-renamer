@@ -13,11 +13,12 @@ def main():
     newName = validFileName()
 
     print("-----------------------------------------")
-    
+    fileType = chooseFileType()
+
     i = 0
     # for filename in os.listdir(path):
     #     # if same name but capitalized, it will delete some items, be aware
-    #     newName = f'{newName}_' + str(i) + ".jpg"
+    #     newName = f'{newName}_' + str(i) + fileType
     #     my_source =path + filename
     #     newName =path +  newName
     #     os.rename(my_source,  newName)
@@ -46,7 +47,45 @@ def validFileName():
             print("Filename set successfully!")
             return attemptedName
 
-
+def chooseFileType():
+    # for now just img types
+    # add from here later: https://www.computerhope.com/issues/ch001789.htm 
+    while(True):
+        fileType = input("Pick file type: \n 1) jpg   2) png   3) gif \n 4) svg   5) tif   6) psd \n 7) ico   8) bmp   9) ai \n 10) ps \n\nType number here:")
+        if fileType == "1":
+            print(".jpg picked.")
+            return ".jpg" 
+        elif fileType == "2":
+            print(".png picked.")
+            return ".png"
+        elif fileType == "3":
+            print(".gif picked.")
+            return ".gif" 
+        elif fileType == "4":
+            print(".svg picked.")
+            return ".svg" 
+        elif fileType == "5":
+            print(".tif picked.")
+            return ".tif" 
+        elif fileType == "6":
+            print(".psd picked.")
+            return ".psd" 
+        elif fileType == "7":
+            print(".ico picked.")
+            return ".ico" 
+        elif fileType == "8":
+            print(".bmp picked.")
+            return ".bmp" 
+        elif fileType == "9":
+            print(".ai picked.")
+            return ".ai" 
+        elif fileType == "10":
+            print(".ps picked.")
+            return ".ps"
+        else:  
+            print("Invalid file type.")
+            print("-----------------------------------------")
+            fileType = input("Pick file type: \n 1) jpg   2) png   3) gif \n 4) svg   5) tif   6) psd \n 7) ico   8) bmp   9) ai \n 10) ps \n\nType number here:")
 
 if __name__ == '__main__':
     main()
