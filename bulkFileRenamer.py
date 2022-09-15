@@ -7,7 +7,7 @@ def main():
     i = 0
     # for paths, make sure to use mnt/d
     print("Input path to folder: ")
-    path = input()
+    path = validPathCheck()
     print("Input edited name (spaces will be _): ")
     editedName = input()
     for filename in os.listdir(path):
@@ -18,7 +18,13 @@ def main():
         os.rename(my_source,  editedName)
         i += 1
 
-
+def validPathCheck():
+    temp = input()
+    if(os.path.exists(temp) != True):
+        print("Path not found.")
+        return
+    else:
+        return temp
 
 if __name__ == '__main__':
     main()
